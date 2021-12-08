@@ -11,6 +11,7 @@ public class MoveToGoalAgent : Agent
     [SerializeField] private Material winMaterial;
     [SerializeField] private Material loseMaterial;
     [SerializeField] private MeshRenderer floorMeshRenderer;
+    [SerializeField] private float moveSpeed = 4f;
 
     public override void OnEpisodeBegin()
     {
@@ -27,7 +28,6 @@ public class MoveToGoalAgent : Agent
     {
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
-        float moveSpeed = 4f;
 
         transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.deltaTime * moveSpeed;
     }
