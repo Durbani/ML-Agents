@@ -6,15 +6,16 @@ TagManager:
   tags:
   - Wall
   - Target
+  - Button
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ButtonLayer
   - Water
   - UI
-  - 
-  - 
+  - Wall
+  - Target
   - 
   - 
   - 
