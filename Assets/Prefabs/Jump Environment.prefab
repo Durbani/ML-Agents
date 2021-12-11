@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 7238500854940429504}
   - component: {fileID: 7238500854940429533}
   - component: {fileID: 836242128692906537}
+  - component: {fileID: 1349167749981550239}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -349,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7238500854940429511}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.69, y: 0.501, z: -6.26}
+  m_LocalPosition: {x: 0.69, y: 0.55, z: -6.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7238500854666668520}
@@ -469,7 +470,7 @@ MonoBehaviour:
   moveX: 0
   moveZ: 0
   moveSpeed: 7
-  jumpHeight: 2
+  jumpHeight: 1.5
   jumpPressed: 0
   groundCheck: {fileID: 7238500854666668520}
   groundDistance: 0.5
@@ -489,7 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 7
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -554,6 +555,32 @@ MonoBehaviour:
   NumStepsToRecord: 0
   DemonstrationName: JumpAgentDemo
   DemonstrationDirectory: Demos
+--- !u!114 &1349167749981550239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238500854940429511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: BottomWallDetector
+  m_DetectableTags: []
+  m_RaysPerDirection: 6
+  m_MaxRayDegrees: 139.2
+  m_SphereCastRadius: 0.43
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 72
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &7238500854974015397
 GameObject:
   m_ObjectHideFlags: 0

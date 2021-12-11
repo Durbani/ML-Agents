@@ -27,10 +27,15 @@ public class JumpAgent : Agent
     {
         sensor.AddObservation(transform.localPosition);
         sensor.AddObservation(targetTransform.localPosition);
+
+        Vector3 lengthVector = transform.localPosition - targetTransform.localPosition;
+        sensor.AddObservation(lengthVector.magnitude);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        AddReward(-0.0005f);
+
         //Movement
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
@@ -45,7 +50,7 @@ public class JumpAgent : Agent
 
     public void SubtractRewardForJump()
     {
-        AddReward(-0.1f);
+        //AddReward(-0.1f);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
