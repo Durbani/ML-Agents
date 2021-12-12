@@ -22,10 +22,13 @@ public class MoveToGoalAgent : Agent
     {
         sensor.AddObservation(transform.localPosition);
         sensor.AddObservation(targetTransform.localPosition);
+        Vector3 disctanceVector = targetTransform.position - transform.position;
+        sensor.AddObservation(disctanceVector.magnitude);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        AddReward(-0.0005f);
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
@@ -44,12 +47,12 @@ public class MoveToGoalAgent : Agent
         if (other.CompareTag("Target"))
         {
             floorMeshRenderer.material = winMaterial;
-            SetReward(1f);
+            AddReward(1f);
         }
         else if (other.CompareTag("Wall"))
         {
             floorMeshRenderer.material = loseMaterial;
-            SetReward(-1f);
+            AddReward(-1f);
         }
         EndEpisode();
     }
