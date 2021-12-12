@@ -4401,9 +4401,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1129676127739046910, guid: 08da2d23cf1620b4292677f81fba7888, type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 2297798143449735971, guid: 08da2d23cf1620b4292677f81fba7888, type: 3}
       propertyPath: Record
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238500854974015397, guid: 08da2d23cf1620b4292677f81fba7888, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7238500855498550594, guid: 08da2d23cf1620b4292677f81fba7888, type: 3}
       propertyPath: m_RootOrder

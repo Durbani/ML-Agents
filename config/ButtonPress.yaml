@@ -1,5 +1,5 @@
 behaviors:
-  ButtonPress:
+  AgentBehavior:
     trainer_type: ppo
     hyperparameters:
       batch_size: 256

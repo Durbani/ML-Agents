@@ -51,7 +51,6 @@ public class JumpPlayerMovement : MonoBehaviour
         if (jumpPressed && isOnGround)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            jumpAgentScript.SubtractRewardForJump();
         }
 
         velocity.y += gravity * Time.deltaTime;
