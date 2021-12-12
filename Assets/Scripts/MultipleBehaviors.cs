@@ -82,7 +82,7 @@ public class MultipleBehaviors : Agent
             buttonPressedCount++;
             if (buttonPressedCount > 1)
             {
-                AddReward(-0.5f);
+                //AddReward(-0.5f);
             }
             if (buttonPressed == false)
             {
