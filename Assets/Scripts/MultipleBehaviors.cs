@@ -25,10 +25,10 @@ public class MultipleBehaviors : Agent
 
     public override void OnEpisodeBegin()
     {
-        if(buttonTransform != null)
-        {
-            buttonTransform.localPosition = new Vector3(Random.Range(-2.5f, 2.5f), 0.5f, Random.Range(-4.5f, -6.5f));
-        }
+        //if(buttonTransform != null)
+        //{
+        //    buttonTransform.localPosition = new Vector3(Random.Range(-2.5f, 2.5f), 0.5f, Random.Range(-4.5f, -6.5f));
+        //}
 
         if (door != null)
         {
@@ -49,8 +49,11 @@ public class MultipleBehaviors : Agent
         //movementScript.ResetPlayer(new Vector3(Random.Range(-9f, 9f), 0.51f, Random.Range(-9f, -1.5f)));
 
         //BUTTON
-        targetTransform.localPosition = new Vector3(Random.Range(-2.5f, 2.5f), 0.5f, Random.Range(2f, 6f));
-        movementScript.ResetPlayer(new Vector3(Random.Range(-2.5f, 2.5f), 0.51f, Random.Range(-1f, -4f)));
+        //targetTransform.localPosition = new Vector3(Random.Range(-2.5f, 2.5f), 0.5f, Random.Range(2f, 6f));
+        //movementScript.ResetPlayer(new Vector3(Random.Range(-2.5f, 2.5f), 0.51f, Random.Range(-1f, -4f)));
+
+        //Button+Jump
+        movementScript.ResetPlayer(new Vector3(-0.71f, 0.501f, 7.07f));
 
     }
     public override void CollectObservations(VectorSensor sensor)
