@@ -45,7 +45,7 @@ public class CameraAgent : Agent
         }
 
         //JUMP
-        //targetTransform.localPosition = new Vector3(Random.Range(-9f, 9f), 0.5f, Random.Range(1.5f, 9f));
+        targetTransform.localPosition = new Vector3(Random.Range(-20f, 20f), 0.7f, Random.Range(-20f, 20f));
         //movementScript.ResetPlayer(new Vector3(Random.Range(-9f, 9f), 0.51f, Random.Range(-9f, -1.5f)));
 
         //BUTTON
@@ -53,21 +53,21 @@ public class CameraAgent : Agent
         //movementScript.ResetPlayer(new Vector3(Random.Range(-2.5f, 2.5f), 0.51f, Random.Range(-1f, -4f)));
 
         //Button+Jump
-        movementScript.ResetPlayer(new Vector3(0f, 0.501f, 0f));
+        movementScript.ResetPlayer(new Vector3(-13.6f + Academy.Instance.EnvironmentParameters.GetWithDefault("playerOffset", 0f), 2.3f, 0f));
 
     }
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(targetTransform.localPosition);
+    //public override void CollectObservations(VectorSensor sensor)
+    //{
+    //    sensor.AddObservation(transform.localPosition);
+    //    sensor.AddObservation(targetTransform.localPosition);
 
-        Vector3 disctanceVector = targetTransform.position - transform.position;
-        sensor.AddObservation(disctanceVector.magnitude);
-    }
+    //    //Vector3 disctanceVector = targetTransform.position - transform.position;
+    //    //sensor.AddObservation(disctanceVector.magnitude);
+    //}
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        if (Vector3.Distance(targetTransform.position, transform.position) > 30f)
+        if (Vector3.Distance(targetTransform.position, transform.position) > 40f)
         {
             AddReward(-1f);
             EndEpisode();
@@ -75,12 +75,12 @@ public class CameraAgent : Agent
 
         AddReward(-0.0005f);
 
-        float moveInput = actions.ContinuousActions[0];
-        float turnInput = actions.ContinuousActions[1];
+        float moveInput = actions.DiscreteActions[2] <= 1 ? actions.DiscreteActions[2] : -1;
+        float turnInput = actions.DiscreteActions[3] <= 1 ? actions.DiscreteActions[3] : -1;
         int pressButton = actions.DiscreteActions[0];
         bool jumpPressed = actions.DiscreteActions[1] == 1 ? true : false;
 
-        Debug.Log(actions.DiscreteActions[1]);
+        //Debug.Log(actions.DiscreteActions[1]);
 
         movementScript.moveInput = moveInput;
         movementScript.turnInput = turnInput;
@@ -109,11 +109,10 @@ public class CameraAgent : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        ActionSegment<float> continousActions = actionsOut.ContinuousActions;
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
 
-        continousActions[0] = Input.GetAxis("Vertical");
-        continousActions[1] = Input.GetAxis("Horizontal");
+        discreteActions[2] = Input.GetAxis("Vertical") >= 0 ? Mathf.RoundToInt(Input.GetAxis("Vertical")) : 2;
+        discreteActions[3] = Input.GetAxis("Horizontal") >= 0 ? Mathf.RoundToInt(Input.GetAxis("Horizontal")) : 2;
 
         discreteActions[0] = Input.GetKey(KeyCode.B) ? 1 : 0;
         discreteActions[1] = Input.GetButton("Jump") ? 1 : 0;
@@ -124,6 +123,7 @@ public class CameraAgent : Agent
         if (other.CompareTag("Target"))
         {
             floorMeshRenderer.material = winMaterial;
+            Debug.Log("Target found!");
             AddReward(3f);
         }
         else if (other.CompareTag("Wall"))

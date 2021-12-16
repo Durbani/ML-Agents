@@ -43,10 +43,10 @@ public class CameraSensorMovement : MonoBehaviour
 
         //Movement
         //transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.deltaTime * moveSpeed;
-        Vector3 move = transform.forward * moveInput;
+        Vector3 move = transform.forward * Mathf.Clamp(moveInput, -1f, 1f);
         characterController.Move(move * moveSpeed * Time.deltaTime);
 
-        if(moveInput != 0f)
+        if(turnInput != 0f)
         {
             float angle = Mathf.Clamp(turnInput, -1f, 1f) * turnSpeed;
             transform.Rotate(Vector3.up, Time.deltaTime * angle);
