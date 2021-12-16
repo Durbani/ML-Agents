@@ -479,7 +479,6 @@ GameObject:
   - component: {fileID: 5567041333216756393}
   - component: {fileID: 5567041333216756390}
   - component: {fileID: 5567041333216756388}
-  - component: {fileID: 5567041333216756387}
   - component: {fileID: 5567041333216756384}
   - component: {fileID: 5567041333216756389}
   - component: {fileID: 5567041333216756386}
@@ -617,33 +616,6 @@ MonoBehaviour:
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
---- !u!114 &5567041333216756387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5567041333216756385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d507d04e6eec25a4f8f904ac288a378a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  targetTransform: {fileID: 0}
-  buttonCheck: {fileID: 5567041332316442713}
-  buttonTransform: {fileID: 0}
-  door: {fileID: 0}
-  winMaterial: {fileID: 2100000, guid: bafae0b08ecc5bd4cbb049f4299083f6, type: 2}
-  loseMaterial: {fileID: 2100000, guid: e5242491eeb7c0842bcc358073153f95, type: 2}
-  floorMeshRenderer: {fileID: 0}
-  buttonCheckDistance: 0.8
-  buttonLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!114 &5567041333216756384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,6 +829,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 78df19b2f020fbd48a46432984c610cb, type: 2}
+    - target: {fileID: 1301688757892477607, guid: 7ff8840016d64aa4faf37f6448e71bcb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358933493364349755, guid: 7ff8840016d64aa4faf37f6448e71bcb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309486515304619963, guid: 7ff8840016d64aa4faf37f6448e71bcb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223542427754191514, guid: 7ff8840016d64aa4faf37f6448e71bcb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9202950479309433700, guid: 7ff8840016d64aa4faf37f6448e71bcb, type: 3}
       propertyPath: m_RootOrder
       value: 0

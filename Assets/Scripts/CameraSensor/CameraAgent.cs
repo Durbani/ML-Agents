@@ -53,7 +53,7 @@ public class CameraAgent : Agent
         //movementScript.ResetPlayer(new Vector3(Random.Range(-2.5f, 2.5f), 0.51f, Random.Range(-1f, -4f)));
 
         //Button+Jump
-        movementScript.ResetPlayer(new Vector3(-0.71f, 0.501f, 7.07f));
+        movementScript.ResetPlayer(new Vector3(0f, 0.501f, 0f));
 
     }
     public override void CollectObservations(VectorSensor sensor)
@@ -67,6 +67,12 @@ public class CameraAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        if (Vector3.Distance(targetTransform.position, transform.position) > 30f)
+        {
+            AddReward(-1f);
+            EndEpisode();
+        }
+
         AddReward(-0.0005f);
 
         float moveInput = actions.ContinuousActions[0];
@@ -89,6 +95,7 @@ public class CameraAgent : Agent
             }
             if (buttonPressed == false)
             {
+                AddReward(0.5f);
                 buttonPressed = true;
                 if (door != null)
                 {
