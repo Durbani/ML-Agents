@@ -56,6 +56,7 @@ public class CameraAgent : Agent
         movementScript.ResetPlayer(new Vector3(-13.6f + Academy.Instance.EnvironmentParameters.GetWithDefault("playerOffset", 0f), 2.3f, 0f));
 
     }
+
     //public override void CollectObservations(VectorSensor sensor)
     //{
     //    sensor.AddObservation(transform.localPosition);
