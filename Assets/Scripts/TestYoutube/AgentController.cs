@@ -48,7 +48,7 @@ public class AgentController : Agent
         door2.GetComponent<BoxCollider>().enabled = true;
 
         boxWithDoor.transform.localPosition = new Vector3(-13, 0, Random.Range(-16, 10));
-        button.localPosition = new Vector3(-1, 0.75f, Random.Range(-16, 10));
+        button.localPosition = new Vector3(16.6f, 0.75f, Random.Range(-16, 10));
 
         // Reset platform position (5 meters away from the agent in a random direction)
         //platform.transform.localPosition = startPosition + Quaternion.Euler(Vector3.up * Random.Range(0f, 360f)) * Vector3.forward * 10f;
