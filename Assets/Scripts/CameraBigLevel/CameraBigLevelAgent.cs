@@ -7,7 +7,7 @@ using Unity.MLAgents.Sensors;
 
 public class CameraBigLevelAgent : Agent
 {
-    [SerializeField] private Transform targetTransform;
+    [SerializeField] private Transform targetBoxTransform;
     [SerializeField] private Transform buttonCheck;
     [SerializeField] private Transform buttonTransform;
     [SerializeField] private Transform door;
@@ -16,10 +16,17 @@ public class CameraBigLevelAgent : Agent
     [SerializeField] private MeshRenderer floorMeshRenderer;
     [SerializeField] private float buttonCheckDistance;
     [SerializeField] private LayerMask buttonLayerMask;
+    [SerializeField] private GameObject monumentObject;
+    [SerializeField] private GameObject irrgartenObject;
+
+    [SerializeField] private Vector3[] possiblePositionsMonument;
+    [SerializeField] private Vector3[] possiblePositionsIrrgarten;
 
     private bool buttonPressed;
 
     private CameraSensorMovement movementScript;
+
+    public float currentState = 0f;
 
     public override void OnEpisodeBegin()
     {
@@ -37,15 +44,72 @@ public class CameraBigLevelAgent : Agent
             movementScript = GetComponent<CameraSensorMovement>();
         }
 
-        movementScript.ResetPlayer(new Vector3(-13.6f, 2.3f, Random.Range(-48f, 48f)));
+        movementScript.ResetPlayer(new Vector3(Random.Range(-18.5f, -10.5f) , 0.501f , Random.Range(-48f, 48f)));
 
-
-
-
-
-        targetTransform.localPosition = new Vector3(Random.Range(-20f, 20f), 0.7f, Random.Range(-20f, 20f));
+        currentState = Academy.Instance.EnvironmentParameters.GetWithDefault("leveldata", 0f);
         
+        if (currentState < 1.0f) //Stage 1
+        {
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
 
+            //Button
+            buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 0.2f), 1.25f, Random.Range(-48f, 48f));
+        } 
+        else if (currentState < 2.0f) //Stage 2
+        {
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+            targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+            //Button
+            buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 0.2f), 1.25f, Random.Range(-48f, 48f));
+        }
+        else if (currentState < 3.0f) //Stage 3
+        {
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+            targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+            //Button
+            buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 20f), 1.25f, Random.Range(-48f, 48f));
+        }
+        else if (currentState < 4.0f) //Stage 4
+        {
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+            targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+            //Button
+            buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
+        }
+        else if (currentState < 5.0f) //Stage 5
+        {
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+            targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+            //Enable Obstacles
+            monumentObject.SetActive(true);
+            irrgartenObject.SetActive(true);
+
+            //Randomize button position
+            float randomPosition = Random.Range(1f, 4f);
+
+            if(randomPosition < 2f)
+            {
+                //Button
+                buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(-48f, 48f));
+            }
+            else if( randomPosition < 3f) //Button on monument
+            {
+                buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
+            } 
+            else //Button in irrgarten
+            {
+                buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
+            }
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actions)

@@ -30,7 +30,7 @@ behaviors:
     summary_freq: 20000
     threaded: true
 environment_parameters:
-  player_offset:
+  level_data:
     curriculum:
       - name: Lesson0
         completion_criteria:
@@ -92,15 +92,3 @@ environment_parameters:
           sampler_parameters:
             min_value: 4.0
             max_value: 4.9
-      - name: Lesson5
-        completion_criteria:
-          measure: reward
-          behavior: AgentBehavior
-          signal_smoothing: true
-          min_lesson_length: 100
-          threshold: 2.5
-        value:
-          sampler_type: uniform
-          sampler_parameters:
-            min_value: 5.0
-            max_value: 5.9
