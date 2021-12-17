@@ -17,21 +17,19 @@ public class CameraBigLevelAgent : Agent
     [SerializeField] private float buttonCheckDistance;
     [SerializeField] private LayerMask buttonLayerMask;
 
-    private int buttonPressedCount;
     private bool buttonPressed;
 
     private CameraSensorMovement movementScript;
 
     public override void OnEpisodeBegin()
     {
-
+        //General
         if (door != null)
         {
             door.GetComponent<MeshRenderer>().enabled = true;
             door.GetComponent<BoxCollider>().enabled = true;
         }
 
-        buttonPressedCount = 0;
         buttonPressed = false;
 
         if (movementScript == null)
@@ -39,8 +37,14 @@ public class CameraBigLevelAgent : Agent
             movementScript = GetComponent<CameraSensorMovement>();
         }
 
+        movementScript.ResetPlayer(new Vector3(-13.6f, 2.3f, Random.Range(-48f, 48f)));
+
+
+
+
+
         targetTransform.localPosition = new Vector3(Random.Range(-20f, 20f), 0.7f, Random.Range(-20f, 20f));
-        movementScript.ResetPlayer(new Vector3(-13.6f + Academy.Instance.EnvironmentParameters.GetWithDefault("playerOffset", 0f), 2.3f, 0f));
+        
 
     }
 
@@ -61,11 +65,6 @@ public class CameraBigLevelAgent : Agent
 
         if (Physics.CheckSphere(buttonCheck.position, buttonCheckDistance, buttonLayerMask) && pressButton == 1)
         {
-            buttonPressedCount++;
-            if (buttonPressedCount > 1)
-            {
-                //AddReward(-0.5f);
-            }
             if (buttonPressed == false)
             {
                 AddReward(0.5f);
@@ -95,13 +94,13 @@ public class CameraBigLevelAgent : Agent
     {
         if (other.CompareTag("Target"))
         {
-            floorMeshRenderer.material = winMaterial;
-            Debug.Log("Target found!");
+            //floorMeshRenderer.material = winMaterial;
+            //Debug.Log("Target found!");
             AddReward(3f);
         }
         else if (other.CompareTag("Wall"))
         {
-            floorMeshRenderer.material = loseMaterial;
+            //floorMeshRenderer.material = loseMaterial;
             AddReward(-3f);
         }
         EndEpisode();
