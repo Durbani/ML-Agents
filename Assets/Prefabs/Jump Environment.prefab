@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7185647547656414004}
   - component: {fileID: 8335526653772167363}
   - component: {fileID: 6493708341869182752}
-  - component: {fileID: 7981226630586878894}
+  - component: {fileID: 2451335523026826958}
   - component: {fileID: 2627964265905581891}
   m_Layer: 0
   m_Name: Agent
@@ -311,7 +311,7 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
---- !u!114 &7981226630586878894
+--- !u!114 &2451335523026826958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250476133211921798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d507d04e6eec25a4f8f904ac288a378a, type: 3}
+  m_Script: {fileID: 11500000, guid: c6f66425648504b48a04df510abf0081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
@@ -328,16 +328,9 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   targetTransform: {fileID: 895886774657382048}
-  buttonCheck: {fileID: 5452944888052116915}
-  buttonTransform: {fileID: 0}
-  door: {fileID: 0}
   winMaterial: {fileID: 2100000, guid: bafae0b08ecc5bd4cbb049f4299083f6, type: 2}
   loseMaterial: {fileID: 2100000, guid: e5242491eeb7c0842bcc358073153f95, type: 2}
   floorMeshRenderer: {fileID: 7238500854974015395}
-  buttonCheckDistance: 0.8
-  buttonLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!114 &2627964265905581891
 MonoBehaviour:
   m_ObjectHideFlags: 0

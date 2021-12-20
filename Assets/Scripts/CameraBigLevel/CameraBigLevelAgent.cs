@@ -19,6 +19,17 @@ public class CameraBigLevelAgent : Agent
     [SerializeField] private GameObject monumentObject;
     [SerializeField] private GameObject irrgartenObject;
 
+    [SerializeField] private GameObject outsideWall1;
+    [SerializeField] private GameObject outsideWall2;
+    [SerializeField] private GameObject outsideWall3;
+    [SerializeField] private GameObject outsideWall4;
+
+    [SerializeField] private GameObject outsideWallNextStage1;
+    [SerializeField] private GameObject outsideWallNextStage2;
+    [SerializeField] private GameObject outsideWallNextStage3;
+    [SerializeField] private GameObject outsideWallNextStage4;
+
+
     [SerializeField] private Vector3[] possiblePositionsMonument;
     [SerializeField] private Vector3[] possiblePositionsIrrgarten;
 
@@ -44,11 +55,67 @@ public class CameraBigLevelAgent : Agent
             movementScript = GetComponent<CameraSensorMovement>();
         }
 
-        movementScript.ResetPlayer(new Vector3(Random.Range(-18.5f, -10.5f) , 0.501f , Random.Range(-48f, 48f)));
+        //Debug.Log(Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f));
 
-        currentState = Academy.Instance.EnvironmentParameters.GetWithDefault("leveldata", 0f);
-        
+        currentState = Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f);
+
+        if (currentState < 3.0f)
+        {
+            movementScript.ResetPlayer(new Vector3(-10.3f, 0.501f, -0.4f));
+        }
+        else
+        {
+            movementScript.ResetPlayer(new Vector3(Random.Range(-18.5f, -10.5f), 0.501f, Random.Range(-48f, 48f)));
+        }
+
         if (currentState < 1.0f) //Stage 1
+        {
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(-26.7f, 0f, -0.2f);
+
+            //Button
+            buttonTransform.localPosition = new Vector3(-16.5f, 1.334f, -4.3f);
+        }
+        else if (currentState < 2.0f) //Stage 2
+        {
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(-26.7f, 0f, -0.2f);
+
+            //Button
+            buttonTransform.localPosition = new Vector3(Random.Range(-18f, -14f), 1.25f, Random.Range(-13f, 13f));
+        }
+        else if (currentState < 3.0f) //Stage 3
+        {
+            if (outsideWall1.activeSelf)
+            {
+                outsideWall1.SetActive(false);
+                outsideWall2.SetActive(false);
+                outsideWall3.SetActive(false);
+                outsideWall4.SetActive(false);
+            }
+
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(-26.7f, 0f, -0.2f);
+
+            //Button
+            buttonTransform.localPosition = new Vector3(Random.Range(-18f, -14f), 1.25f, Random.Range(-24f, 24f));
+        }
+        else if (currentState < 4.0f) //Stage 4
+        {
+            if (outsideWallNextStage1.activeSelf)
+            {
+                outsideWallNextStage1.SetActive(false);
+                outsideWallNextStage2.SetActive(false);
+                outsideWallNextStage3.SetActive(false);
+                outsideWallNextStage4.SetActive(false);
+            }
+            //Box with Target
+            targetBoxTransform.localPosition = new Vector3(-26.7f, 0f, -0.2f);
+
+            //Button
+            buttonTransform.localPosition = new Vector3(Random.Range(-18.5f, -11f), 1.25f, Random.Range(-48f, 48f));
+        }
+        else if (currentState < 5.0f) //Stage 5
         {
             //Box with Target
             targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
@@ -56,7 +123,7 @@ public class CameraBigLevelAgent : Agent
             //Button
             buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 0.2f), 1.25f, Random.Range(-48f, 48f));
         } 
-        else if (currentState < 2.0f) //Stage 2
+        else if (currentState < 6.0f) //Stage 6
         {
             //Box with Target
             targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
@@ -65,7 +132,7 @@ public class CameraBigLevelAgent : Agent
             //Button
             buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 0.2f), 1.25f, Random.Range(-48f, 48f));
         }
-        else if (currentState < 3.0f) //Stage 3
+        else if (currentState < 7.0f) //Stage 7
         {
             //Box with Target
             targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
@@ -74,7 +141,7 @@ public class CameraBigLevelAgent : Agent
             //Button
             buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 20f), 1.25f, Random.Range(-48f, 48f));
         }
-        else if (currentState < 4.0f) //Stage 4
+        else if (currentState < 8.0f) //Stage 8
         {
             //Box with Target
             targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
@@ -83,7 +150,7 @@ public class CameraBigLevelAgent : Agent
             //Button
             buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
         }
-        else if (currentState < 5.0f) //Stage 5
+        else if (currentState < 9.0f) //Stage 9
         {
             //Box with Target
             targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
@@ -110,6 +177,11 @@ public class CameraBigLevelAgent : Agent
                 buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
             }
         }
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(buttonPressed);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -159,7 +231,7 @@ public class CameraBigLevelAgent : Agent
         if (other.CompareTag("Target"))
         {
             //floorMeshRenderer.material = winMaterial;
-            //Debug.Log("Target found!");
+            Debug.Log("Target found!");
             AddReward(3f);
         }
         else if (other.CompareTag("Wall"))
