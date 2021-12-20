@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1146237296685935192}
   - component: {fileID: 8487430273655003619}
   - component: {fileID: 5002397848191734162}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Plattform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 78df19b2f020fbd48a46432984c610cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3194395122055457846}
   - component: {fileID: 989653782805474481}
   - component: {fileID: 2999073281904921024}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Plattform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 78df19b2f020fbd48a46432984c610cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 8352616556520375170}
   - component: {fileID: 7581896327847803359}
   - component: {fileID: 2057238023363926414}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Plattform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 78df19b2f020fbd48a46432984c610cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4940820287654156142}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
