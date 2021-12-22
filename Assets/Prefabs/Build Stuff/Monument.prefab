@@ -536,18 +536,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1808636262905396685}
     m_Modifications:
-    - target: {fileID: 989653782805474481, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 78df19b2f020fbd48a46432984c610cb, type: 2}
-    - target: {fileID: 2824139414665533167, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3439508187567114805, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4940820287654156142, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -592,21 +580,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5387897503840473615, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8602004919934787066, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
       propertyPath: m_Name
       value: Stair
-      objectReference: {fileID: 0}
-    - target: {fileID: 8602004919934787066, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8602004919934787066, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}
-      propertyPath: m_TagString
-      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee59a236e3ee95e42800427a1a37f7d2, type: 3}

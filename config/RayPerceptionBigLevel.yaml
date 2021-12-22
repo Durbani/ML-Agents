@@ -137,9 +137,21 @@ environment_parameters:
           behavior: AgentBehavior
           signal_smoothing: true
           min_lesson_length: 100
-          threshold: 2.0
+          threshold: 3.0
         value:
           sampler_type: uniform
           sampler_parameters:
             min_value: 8.0
             max_value: 8.9
+      # - name: Lesson9
+        # completion_criteria:
+          # measure: reward
+          # behavior: AgentBehavior
+          # signal_smoothing: true
+          # min_lesson_length: 100
+          # threshold: 2.0
+        # value:
+          # sampler_type: uniform
+          # sampler_parameters:
+            # min_value: 9.0
+            # max_value: 9.9

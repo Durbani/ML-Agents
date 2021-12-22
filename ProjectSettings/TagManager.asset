@@ -9,6 +9,7 @@ TagManager:
   - Button
   - Platform
   - Collectible
+  - InsideWall
   layers:
   - Default
   - TransparentFX
