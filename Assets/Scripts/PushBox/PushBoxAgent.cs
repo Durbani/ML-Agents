@@ -121,12 +121,26 @@ public class PushBoxAgent : Agent
             floorMeshRenderer.material = winMaterial;
             Debug.Log("Target found!");
             AddReward(3f);
+            EndEpisode();
         }
         else if (other.CompareTag("Wall"))
         {
             floorMeshRenderer.material = loseMaterial;
             AddReward(-3f);
+            EndEpisode();
         }
-        EndEpisode();
+        else if (other.CompareTag("Movable"))
+        {
+            
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if (collision.collider.CompareTag("Movable"))
+        //{
+        //    Debug.Log("Push!!!!");
+        //    collision.collider.gameObject.transform.position += transform.forward * 0.001f;
+        //}
     }
 }

@@ -81,9 +81,18 @@ public class PushBoxMovement : MonoBehaviour
     {
         if (hit.collider.CompareTag("Movable"))
         {
-            if (hit.collider.gameObject.GetComponent<Rigidbody>() == null) return;
-            var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-            hit.collider.attachedRigidbody.velocity = pushDir * 10;
+            if(!(transform.position.y >= 2.5f))
+            {
+                //Debug.Log("Push!");
+                //if (hit.collider.gameObject.GetComponent<Rigidbody>() == null) return;
+                //var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+                //hit.collider.attachedRigidbody.velocity = pushDir * 10;
+
+                Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
+                forceDirection.y = 0;
+                forceDirection.Normalize();
+                hit.collider.attachedRigidbody.AddForceAtPosition(forceDirection * 1, transform.position, ForceMode.Impulse);
+            }
         }
     }
 }
