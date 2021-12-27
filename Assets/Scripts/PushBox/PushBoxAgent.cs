@@ -129,10 +129,6 @@ public class PushBoxAgent : Agent
             AddReward(-3f);
             EndEpisode();
         }
-        else if (other.CompareTag("Movable"))
-        {
-            
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -142,5 +138,5 @@ public class PushBoxAgent : Agent
         //    Debug.Log("Push!!!!");
         //    collision.collider.gameObject.transform.position += transform.forward * 0.001f;
         //}
-    }
+    } 
 }

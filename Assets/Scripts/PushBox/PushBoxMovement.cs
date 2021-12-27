@@ -81,7 +81,7 @@ public class PushBoxMovement : MonoBehaviour
     {
         if (hit.collider.CompareTag("Movable"))
         {
-            if(!(transform.position.y >= 2.5f))
+            if (!(transform.position.y >= 2.5f) && isOnGround)
             {
                 //Debug.Log("Push!");
                 //if (hit.collider.gameObject.GetComponent<Rigidbody>() == null) return;
