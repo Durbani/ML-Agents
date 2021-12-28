@@ -10,6 +10,8 @@ TagManager:
   - Platform
   - Collectible
   - InsideWall
+  - BoxWall
+  - Movable
   layers:
   - Default
   - TransparentFX
