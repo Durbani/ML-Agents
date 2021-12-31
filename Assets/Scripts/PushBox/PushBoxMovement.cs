@@ -81,13 +81,8 @@ public class PushBoxMovement : MonoBehaviour
     {
         if (hit.collider.CompareTag("Movable"))
         {
-            if (!(transform.position.y >= 2.5f) && isOnGround)
+            if (isOnGround && transform.localPosition.y < 2f)
             {
-                //Debug.Log("Push!");
-                //if (hit.collider.gameObject.GetComponent<Rigidbody>() == null) return;
-                //var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-                //hit.collider.attachedRigidbody.velocity = pushDir * 10;
-
                 Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
                 forceDirection.y = 0;
                 forceDirection.Normalize();

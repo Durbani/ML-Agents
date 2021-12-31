@@ -12,6 +12,8 @@ TagManager:
   - InsideWall
   - BoxWall
   - Movable
+  - PointArea
+  - BlockTrigger
   layers:
   - Default
   - TransparentFX
