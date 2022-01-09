@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovableBlock : MonoBehaviour
 {
     [SerializeField] private FinalLevelRayPerceptionAgent agentScript;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("BlockTrigger"))

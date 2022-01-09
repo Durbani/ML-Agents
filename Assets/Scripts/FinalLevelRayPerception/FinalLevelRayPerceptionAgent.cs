@@ -38,6 +38,8 @@ public class FinalLevelRayPerceptionAgent : Agent
     [SerializeField] private Vector3[] possiblePositionsMonument;
     [SerializeField] private Vector3[] possiblePositionsIrrgarten;
 
+    [SerializeField] private GameObject jumpsectionWall;
+
     public bool enableFinalLevel = false;
 
     private bool buttonPressed;
@@ -72,6 +74,8 @@ public class FinalLevelRayPerceptionAgent : Agent
         buttonOnJumpSection = false;
         rewardIsAlreadyTaken = false;
         pushBlockRewardAlreadyTaken = false;
+
+        jumpsectionWall.SetActive(true);
 
         //Debug.Log(Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f));
 
@@ -194,7 +198,7 @@ public class FinalLevelRayPerceptionAgent : Agent
             {
                 jumpSectionObject.SetActive(true);
                 movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
-                     | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                     | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
 
                 //Randomize button position
                 float randomPosition = Random.Range(1f, 4f);
@@ -521,6 +525,9 @@ public class FinalLevelRayPerceptionAgent : Agent
         {
             movementScript.ResetPlayer(new Vector3(Random.Range(-18.5f, -10.5f), 0.501f, Random.Range(-48f, 48f)));
 
+            movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
+                    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
             //Box with Target
             targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
             targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
@@ -623,6 +630,8 @@ public class FinalLevelRayPerceptionAgent : Agent
         Vector3 movableDistanceRelation = movablePlatformTransform.position - movableBlockTransform.position;
         sensor.AddObservation(movableDistanceRelation.normalized);
         sensor.AddObservation(movableDistanceRelation.magnitude);
+
+        sensor.AddObservation(pushBlockRewardAlreadyTaken);
 
         //Is block in acceptable jump region true else false
         //if (movableDistanceRelation.magnitude >= 9f && movableDistanceRelation.magnitude <= 13f)
@@ -745,6 +754,7 @@ public class FinalLevelRayPerceptionAgent : Agent
         if (buttonOnJumpSection && !pushBlockRewardAlreadyTaken)
         {
             pushBlockRewardAlreadyTaken = true;
+            jumpsectionWall.SetActive(false);
             AddReward(0.5f);
         }
     }
