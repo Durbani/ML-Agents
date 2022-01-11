@@ -67,7 +67,8 @@ public class PushBoxMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
-        movableBox.GetComponent<Rigidbody>().velocity *= velocityMultiply;
+        
+        //movableBox.GetComponent<Rigidbody>().velocity *= velocityMultiply;
     }
 
     public void ResetPlayer(Vector3 newPosition)
@@ -81,7 +82,7 @@ public class PushBoxMovement : MonoBehaviour
     {
         if (hit.collider.CompareTag("Movable"))
         {
-            if(!(transform.position.y >= 2.5f))
+            if(isOnGround)
             {
                 //Debug.Log("Push!");
                 //if (hit.collider.gameObject.GetComponent<Rigidbody>() == null) return;

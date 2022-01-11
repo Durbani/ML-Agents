@@ -74,7 +74,7 @@ public class PushBoxAgent : Agent
             targetPlatformTransform.localPosition = new Vector3(Random.Range(-8.75f, 8.75f), 2, -8.75f);
         }
 
-        movableBoxTransform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //movableBoxTransform.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public override void CollectObservations(VectorSensor sensor)
