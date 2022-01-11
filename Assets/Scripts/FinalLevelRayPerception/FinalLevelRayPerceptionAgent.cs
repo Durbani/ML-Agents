@@ -84,7 +84,7 @@ public class FinalLevelRayPerceptionAgent : Agent
         if (!enableFinalLevel)
         {
 
-            currentState = Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f);
+            //currentState = Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f);
 
             if (currentState < 3.0f)
             {
@@ -196,25 +196,75 @@ public class FinalLevelRayPerceptionAgent : Agent
                 //Button
                 buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
             }
-            else if (currentState < 9.0f) //new push section
+            else if (currentState < 9.0f)
             {
-                jumpSectionObject.SetActive(true);
-                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
-                //     | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                //Box with Target
+                targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+                targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+                //Enable Obstacles
+                monumentObject.SetActive(true);
+                irrgartenObject.SetActive(true);
+
+                for (int i = 0; i < irrgartenObject.transform.childCount; i++)
+                {
+                    Transform wall = irrgartenObject.transform.GetChild(i);
+                    if (wall.gameObject.tag.Equals("Untagged"))
+                    {
+                        break;
+                    }
+                    wall.gameObject.tag = "Untagged";
+                    wall.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                }
 
                 //Randomize button position
                 float randomPosition = Random.Range(1f, 4f);
 
-                if (randomPosition < 2)
+                if (randomPosition < 2f)
                 {
-                    //Box with Target
-                    targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
-                    targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
-
                     //Button
-                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
+                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
                 }
-                else
+                else if (randomPosition < 3f) //Button on monument
+                {
+                    buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
+                }
+                else //Button in irrgarten
+                {
+                    buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
+                }
+            }
+            else if (currentState < 10.0f) //new push section
+            {
+                jumpSectionObject.SetActive(true);
+
+                //Box with Target
+                targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+                targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+                //Plattform und Pushbox
+                movablePlatformTransform.localPosition = new Vector3(Random.Range(-11f, 2f), 3f, Random.Range(-40f, -10f));
+                movableBlockTransform.localPosition = new Vector3(Random.Range(-17f, 8f), 0.85f, Random.Range(-33f, -11f));
+
+                //Enable Obstacles
+                monumentObject.SetActive(true);
+                irrgartenObject.SetActive(true);
+
+                for (int i = 0; i < irrgartenObject.transform.childCount; i++)
+                {
+                    Transform wall = irrgartenObject.transform.GetChild(i);
+                    if (wall.gameObject.tag.Equals("Untagged"))
+                    {
+                        break;
+                    }
+                    wall.gameObject.tag = "Untagged";
+                    wall.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                }
+
+                //Randomize button position
+                float randomPosition = Random.Range(0f, 6f);
+
+                if (randomPosition < 3f)
                 {
                     buttonOnJumpSection = true;
 
@@ -234,26 +284,51 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
+                else if (randomPosition < 4f)
+                {
+                    //Button
+                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
+                }
+                else if (randomPosition < 5f) //Button on monument
+                {
+                    buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
+                }
+                else //Button in irrgarten
+                {
+                    buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
+                }
             }
-            else if (currentState < 10.0f) //new push section
+            else if (currentState < 11.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
-                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+                //Box with Target
+                targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+                targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+                //Plattform und Pushbox
+                movablePlatformTransform.localPosition = new Vector3(Random.Range(-11f, 2f), 3f, Random.Range(-40f, -10f));
+                movableBlockTransform.localPosition = new Vector3(Random.Range(-17f, 8f), 0.85f, Random.Range(-33f, -11f));
+
+                //Enable Obstacles
+                monumentObject.SetActive(true);
+                irrgartenObject.SetActive(true);
+
+                for (int i = 0; i < irrgartenObject.transform.childCount; i++)
+                {
+                    Transform wall = irrgartenObject.transform.GetChild(i);
+                    if (wall.gameObject.tag.Equals("Untagged"))
+                    {
+                        break;
+                    }
+                    wall.gameObject.tag = "Untagged";
+                    wall.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                }
 
                 //Randomize button position
-                float randomPosition = Random.Range(1f, 4f);
+                float randomPosition = Random.Range(0f, 6f);
 
-                if (randomPosition < 2)
-                {
-                    //Box with Target
-                    targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
-                    targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
-
-                    //Button
-                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
-                }
-                else
+                if (randomPosition < 3f)
                 {
                     buttonOnJumpSection = true;
 
@@ -273,26 +348,51 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
+                else if (randomPosition < 4f)
+                {
+                    //Button
+                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
+                }
+                else if (randomPosition < 5f) //Button on monument
+                {
+                    buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
+                }
+                else //Button in irrgarten
+                {
+                    buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
+                }
             }
-            else if (currentState < 11.0f) //new push section
+            else if (currentState < 12.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
-                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+                //Box with Target
+                targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+                targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+                //Plattform und Pushbox
+                movablePlatformTransform.localPosition = new Vector3(Random.Range(-11f, 2f), 3f, Random.Range(-40f, -10f));
+                movableBlockTransform.localPosition = new Vector3(Random.Range(-17f, 8f), 0.85f, Random.Range(-33f, -11f));
+
+                //Enable Obstacles
+                monumentObject.SetActive(true);
+                irrgartenObject.SetActive(true);
+
+                for (int i = 0; i < irrgartenObject.transform.childCount; i++)
+                {
+                    Transform wall = irrgartenObject.transform.GetChild(i);
+                    if (wall.gameObject.tag.Equals("Untagged"))
+                    {
+                        break;
+                    }
+                    wall.gameObject.tag = "Untagged";
+                    wall.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                }
 
                 //Randomize button position
-                float randomPosition = Random.Range(1f, 4f);
+                float randomPosition = Random.Range(0f, 6f);
 
-                if (randomPosition < 2)
-                {
-                    //Box with Target
-                    targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
-                    targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
-
-                    //Button
-                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
-                }
-                else
+                if (randomPosition < 3f)
                 {
                     buttonOnJumpSection = true;
 
@@ -312,26 +412,51 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
+                else if (randomPosition < 4f)
+                {
+                    //Button
+                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
+                }
+                else if (randomPosition < 5f) //Button on monument
+                {
+                    buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
+                }
+                else //Button in irrgarten
+                {
+                    buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
+                }
             }
-            else if (currentState < 12.0f) //new push section
+            else if (currentState < 13.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
-                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+                //Box with Target
+                targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+                targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+                //Plattform und Pushbox
+                movablePlatformTransform.localPosition = new Vector3(Random.Range(-11f, 2f), 3f, Random.Range(-40f, -10f));
+                movableBlockTransform.localPosition = new Vector3(Random.Range(-17f, 8f), 0.85f, Random.Range(-33f, -11f));
+
+                //Enable Obstacles
+                monumentObject.SetActive(true);
+                irrgartenObject.SetActive(true);
+
+                for (int i = 0; i < irrgartenObject.transform.childCount; i++)
+                {
+                    Transform wall = irrgartenObject.transform.GetChild(i);
+                    if (wall.gameObject.tag.Equals("Untagged"))
+                    {
+                        break;
+                    }
+                    wall.gameObject.tag = "Untagged";
+                    wall.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                }
 
                 //Randomize button position
-                float randomPosition = Random.Range(1f, 4f);
+                float randomPosition = Random.Range(0f, 6f);
 
-                if (randomPosition < 2)
-                {
-                    //Box with Target
-                    targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
-                    targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
-
-                    //Button
-                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
-                }
-                else
+                if (randomPosition < 3f)
                 {
                     buttonOnJumpSection = true;
 
@@ -356,26 +481,51 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
+                else if (randomPosition < 4f)
+                {
+                    //Button
+                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
+                }
+                else if (randomPosition < 5f) //Button on monument
+                {
+                    buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
+                }
+                else //Button in irrgarten
+                {
+                    buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
+                }
             }
-            else if (currentState < 13.0f) //new push section
+            else if (currentState < 14.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
-                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+                //Box with Target
+                targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
+                targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
+
+                //Plattform und Pushbox
+                movablePlatformTransform.localPosition = new Vector3(Random.Range(-11f, 2f), 3f, Random.Range(-40f, -10f));
+                movableBlockTransform.localPosition = new Vector3(Random.Range(-17f, 8f), 0.85f, Random.Range(-33f, -11f));
+
+                //Enable Obstacles
+                monumentObject.SetActive(true);
+                irrgartenObject.SetActive(true);
+
+                for (int i = 0; i < irrgartenObject.transform.childCount; i++)
+                {
+                    Transform wall = irrgartenObject.transform.GetChild(i);
+                    if (wall.gameObject.tag.Equals("Untagged"))
+                    {
+                        break;
+                    }
+                    wall.gameObject.tag = "Untagged";
+                    wall.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                }
 
                 //Randomize button position
-                float randomPosition = Random.Range(1f, 4f);
+                float randomPosition = Random.Range(0f, 6f);
 
-                if (randomPosition < 2)
-                {
-                    //Box with Target
-                    targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
-                    targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
-
-                    //Button
-                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 47f), 1.25f, Random.Range(-48f, 48f));
-                }
-                else
+                if (randomPosition < 3f)
                 {
                     buttonOnJumpSection = true;
 
@@ -400,8 +550,21 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
+                else if (randomPosition < 4f)
+                {
+                    //Button
+                    buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
+                }
+                else if (randomPosition < 5f) //Button on monument
+                {
+                    buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
+                }
+                else //Button in irrgarten
+                {
+                    buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
+                }
             }
-            else if (currentState < 14.0f) //Stage 9
+            else if (currentState < 15.0f) //Stage 9
             {
                 //Box with Target
                 targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
@@ -460,7 +623,7 @@ public class FinalLevelRayPerceptionAgent : Agent
                     buttonTransform.localPosition = possiblePositionsIrrgarten[Mathf.RoundToInt(Random.Range(0f, possiblePositionsIrrgarten.Length - 1))];
                 }
             }
-            else if (currentState < 15.0f) //Stage 10
+            else if (currentState < 16.0f) //Stage 10
             {
                 //Box with Target
                 targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
