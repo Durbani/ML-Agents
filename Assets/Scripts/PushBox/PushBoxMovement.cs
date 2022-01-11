@@ -24,6 +24,14 @@ public class PushBoxMovement : MonoBehaviour
 
     public float velocityMultiply = 0.003f;
 
+    public bool liftBox;
+    [SerializeField] private Transform handOfAgent;
+    [SerializeField] private float boxLiftDistance;
+    [SerializeField] private LayerMask boxLayerMask;
+    [SerializeField] private Transform movableBoxTransform;
+
+    private bool boxAlreadyPickedUp = false;
+    private bool boxWasCarriedToGoal = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +67,7 @@ public class PushBoxMovement : MonoBehaviour
 
 
         //Jump
-        if (jumpPressed && isOnGround)
+        if (jumpPressed && isOnGround && !boxAlreadyPickedUp)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
@@ -67,7 +75,52 @@ public class PushBoxMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
-        movableBox.GetComponent<Rigidbody>().velocity *= velocityMultiply;
+        //movableBox.GetComponent<Rigidbody>().velocity *= velocityMultiply;
+
+
+        if (!boxWasCarriedToGoal)
+        {
+            //Release box because agent let go of it
+            if (boxAlreadyPickedUp && !liftBox)
+            {
+                if (isOnGround)
+                {
+                    boxAlreadyPickedUp = false;
+                    Debug.Log("Put box down...");
+                }
+                else
+                {
+                    float currentY = movableBoxTransform.position.y;
+                    movableBoxTransform.position = handOfAgent.position + transform.forward * (movableBoxTransform.localScale.z / 2f + 0.5f);
+                    movableBoxTransform.position = new Vector3(movableBoxTransform.position.x, currentY, movableBoxTransform.position.z);
+                    movableBoxTransform.rotation = handOfAgent.rotation;
+                }
+            }
+
+            //If box is not picked up yet check for pick up request of agent
+            if (!boxAlreadyPickedUp)
+            {
+                Collider[] hitColliders = Physics.OverlapSphere(handOfAgent.position, boxLiftDistance, boxLayerMask);
+                foreach (var hitCollider in hitColliders)
+                {
+                    if (hitCollider.CompareTag("Movable") && liftBox)
+                    {
+                        boxAlreadyPickedUp = true;
+                    }
+
+                }
+            }
+
+            if (boxAlreadyPickedUp)
+            {
+                Debug.Log("Lift box...");
+                float currentY = movableBoxTransform.position.y;
+                movableBoxTransform.position = handOfAgent.position + transform.forward * (movableBoxTransform.localScale.z / 2f + 0.5f);
+                movableBoxTransform.position = new Vector3(movableBoxTransform.position.x, currentY ,movableBoxTransform.position.z);
+                movableBoxTransform.rotation = handOfAgent.rotation;
+            }
+        }
+        
     }
 
     public void ResetPlayer(Vector3 newPosition)
@@ -77,17 +130,35 @@ public class PushBoxMovement : MonoBehaviour
         characterController.enabled = true;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public bool IsPlayerOnGround()
     {
-        if (hit.collider.CompareTag("Movable"))
+        return isOnGround;
+    }
+
+    public void SetLiftStatus(bool enabled)
+    {
+        if (enabled)
         {
-            if (isOnGround && transform.localPosition.y < 2f)
-            {
-                Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
-                forceDirection.y = 0;
-                forceDirection.Normalize();
-                hit.collider.attachedRigidbody.AddForceAtPosition(forceDirection * 1, transform.position, ForceMode.Impulse);
-            }
+            boxWasCarriedToGoal = false;
+        }
+        else
+        {
+            boxWasCarriedToGoal = true;
+            boxAlreadyPickedUp = false;
         }
     }
+
+    //private void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+    //    if (hit.collider.CompareTag("Movable"))
+    //    {
+    //        if (isOnGround && transform.localPosition.y < 2f)
+    //        {
+    //            Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
+    //            forceDirection.y = 0;
+    //            forceDirection.Normalize();
+    //            hit.collider.attachedRigidbody.AddForceAtPosition(forceDirection * 1, transform.position, ForceMode.Impulse);
+    //        }
+    //    }
+    //}
 }

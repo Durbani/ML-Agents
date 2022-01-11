@@ -51,6 +51,7 @@ public class FinalLevelRayPerceptionAgent : Agent
     private bool buttonOnJumpSection = false;
     private bool rewardIsAlreadyTaken = false;
     private bool pushBlockRewardAlreadyTaken = false;
+    [SerializeField] private Transform agentHandTransform;
 
     public override void OnEpisodeBegin()
     {
@@ -76,6 +77,7 @@ public class FinalLevelRayPerceptionAgent : Agent
         pushBlockRewardAlreadyTaken = false;
 
         jumpsectionWall.SetActive(true);
+        movementScript.SetLiftStatus(true);
 
         //Debug.Log(Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f));
 
@@ -197,8 +199,8 @@ public class FinalLevelRayPerceptionAgent : Agent
             else if (currentState < 9.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
-                     | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
+                //     | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
 
                 //Randomize button position
                 float randomPosition = Random.Range(1f, 4f);
@@ -236,8 +238,8 @@ public class FinalLevelRayPerceptionAgent : Agent
             else if (currentState < 10.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
-                    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
+                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
                 //Randomize button position
                 float randomPosition = Random.Range(1f, 4f);
@@ -275,8 +277,8 @@ public class FinalLevelRayPerceptionAgent : Agent
             else if (currentState < 11.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
-                    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY
+                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
                 //Randomize button position
                 float randomPosition = Random.Range(1f, 4f);
@@ -314,8 +316,8 @@ public class FinalLevelRayPerceptionAgent : Agent
             else if (currentState < 12.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
-                    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
+                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
                 //Randomize button position
                 float randomPosition = Random.Range(1f, 4f);
@@ -358,8 +360,8 @@ public class FinalLevelRayPerceptionAgent : Agent
             else if (currentState < 13.0f) //new push section
             {
                 jumpSectionObject.SetActive(true);
-                movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
-                    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
+                //    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
                 //Randomize button position
                 float randomPosition = Random.Range(1f, 4f);
@@ -406,7 +408,7 @@ public class FinalLevelRayPerceptionAgent : Agent
                 targetBoxTransform.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0f, 360f));
 
                 //Plattform und Pushbox
-                movablePlatformTransform.localPosition = new Vector3(Random.Range(-11f, 2f), 4, Random.Range(-40f, -10f));
+                movablePlatformTransform.localPosition = new Vector3(Random.Range(-11f, 2f), 3f, Random.Range(-40f, -10f));
                 movableBlockTransform.localPosition = new Vector3(Random.Range(-17f, 8f), 0.85f, Random.Range(-33f, -11f));
 
                 //Enable Obstacles
@@ -525,8 +527,8 @@ public class FinalLevelRayPerceptionAgent : Agent
         {
             movementScript.ResetPlayer(new Vector3(Random.Range(-18.5f, -10.5f), 0.501f, Random.Range(-48f, 48f)));
 
-            movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
-                    | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            //movableBlockTransform.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY
+            //        | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
             //Box with Target
             targetBoxTransform.localPosition = new Vector3(Random.Range(-40f, -25f), 0f, Random.Range(-37f, 37f));
@@ -631,7 +633,9 @@ public class FinalLevelRayPerceptionAgent : Agent
         sensor.AddObservation(movableDistanceRelation.normalized);
         sensor.AddObservation(movableDistanceRelation.magnitude);
 
-        sensor.AddObservation(pushBlockRewardAlreadyTaken);
+        //sensor.AddObservation(agentHandTransform.localPosition);
+
+        //sensor.AddObservation(pushBlockRewardAlreadyTaken);
 
         //Is block in acceptable jump region true else false
         //if (movableDistanceRelation.magnitude >= 9f && movableDistanceRelation.magnitude <= 13f)
@@ -659,12 +663,14 @@ public class FinalLevelRayPerceptionAgent : Agent
         float turnInput = actions.ContinuousActions[1];
         int pressButton = actions.DiscreteActions[0];
         bool jumpPressed = actions.DiscreteActions[1] == 1 ? true : false;
+        bool liftPressed = actions.DiscreteActions[2] == 1 ? true : false;
 
         //Debug.Log(moveInput);
 
         movementScript.moveInput = moveInput;
         movementScript.turnInput = turnInput;
         movementScript.jumpPressed = jumpPressed;
+        movementScript.liftBox = liftPressed;
 
         if (Physics.CheckSphere(buttonCheck.position, buttonCheckDistance, buttonLayerMask) && pressButton == 1)
         {
@@ -708,6 +714,7 @@ public class FinalLevelRayPerceptionAgent : Agent
 
         discreteActions[0] = Input.GetKey(KeyCode.B) ? 1 : 0;
         discreteActions[1] = Input.GetButton("Jump") ? 1 : 0;
+        discreteActions[2] = Input.GetKey(KeyCode.L) ? 1 : 0;
 
         Vector3 movableDistanceRelation = movablePlatformTransform.position - movableBlockTransform.position;
         if (movableDistanceRelation.magnitude >= 9f && movableDistanceRelation.magnitude <= 13f) {
@@ -745,16 +752,18 @@ public class FinalLevelRayPerceptionAgent : Agent
             Debug.Log("Wall hitted!");
             floorMeshRenderer.material = loseMaterial;
             AddReward(-3f);
+            movementScript.SetLiftStatus(false);
             EndEpisode();
         }
     }
 
     public void AddRewardForPushingBlock()
     {
-        if (buttonOnJumpSection && !pushBlockRewardAlreadyTaken)
+        if (buttonOnJumpSection && !pushBlockRewardAlreadyTaken && movementScript.IsPlayerOnGround())
         {
             pushBlockRewardAlreadyTaken = true;
             jumpsectionWall.SetActive(false);
+            movementScript.SetLiftStatus(false);
             AddReward(0.5f);
         }
     }
@@ -762,6 +771,7 @@ public class FinalLevelRayPerceptionAgent : Agent
     public void PushedBlockAgainstWall()
     {
         AddReward(-3);
+        movementScript.SetLiftStatus(false);
         EndEpisode();
     }
 }
