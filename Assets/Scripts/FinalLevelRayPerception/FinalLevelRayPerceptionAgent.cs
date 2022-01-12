@@ -84,7 +84,7 @@ public class FinalLevelRayPerceptionAgent : Agent
         if (!enableFinalLevel)
         {
 
-            //currentState = Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f);
+            currentState = Academy.Instance.EnvironmentParameters.GetWithDefault("level_data", 0f);
 
             if (currentState < 3.0f)
             {
