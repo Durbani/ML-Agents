@@ -262,9 +262,9 @@ public class FinalLevelRayPerceptionAgent : Agent
                 }
 
                 //Randomize button position
-                float randomPosition = Random.Range(0f, 6f);
+                float randomPosition = Random.Range(0f, 12f);
 
-                if (randomPosition < 3f)
+                if (randomPosition < 9f)
                 {
                     buttonOnJumpSection = true;
 
@@ -284,12 +284,12 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
-                else if (randomPosition < 4f)
+                else if (randomPosition < 10f)
                 {
                     //Button
                     buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
                 }
-                else if (randomPosition < 5f) //Button on monument
+                else if (randomPosition < 11f) //Button on monument
                 {
                     buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
                 }
@@ -326,9 +326,9 @@ public class FinalLevelRayPerceptionAgent : Agent
                 }
 
                 //Randomize button position
-                float randomPosition = Random.Range(0f, 6f);
+                float randomPosition = Random.Range(0f, 12f);
 
-                if (randomPosition < 3f)
+                if (randomPosition < 9f)
                 {
                     buttonOnJumpSection = true;
 
@@ -348,12 +348,12 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
-                else if (randomPosition < 4f)
+                else if (randomPosition < 10f)
                 {
                     //Button
                     buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
                 }
-                else if (randomPosition < 5f) //Button on monument
+                else if (randomPosition < 11f) //Button on monument
                 {
                     buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
                 }
@@ -390,9 +390,9 @@ public class FinalLevelRayPerceptionAgent : Agent
                 }
 
                 //Randomize button position
-                float randomPosition = Random.Range(0f, 6f);
+                float randomPosition = Random.Range(0f, 12f);
 
-                if (randomPosition < 3f)
+                if (randomPosition < 9f)
                 {
                     buttonOnJumpSection = true;
 
@@ -412,12 +412,12 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
-                else if (randomPosition < 4f)
+                else if (randomPosition < 10f)
                 {
                     //Button
                     buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
                 }
-                else if (randomPosition < 5f) //Button on monument
+                else if (randomPosition < 11f) //Button on monument
                 {
                     buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
                 }
@@ -454,9 +454,9 @@ public class FinalLevelRayPerceptionAgent : Agent
                 }
 
                 //Randomize button position
-                float randomPosition = Random.Range(0f, 6f);
+                float randomPosition = Random.Range(0f, 12f);
 
-                if (randomPosition < 3f)
+                if (randomPosition < 9f)
                 {
                     buttonOnJumpSection = true;
 
@@ -481,12 +481,12 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
-                else if (randomPosition < 4f)
+                else if (randomPosition < 10f)
                 {
                     //Button
                     buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
                 }
-                else if (randomPosition < 5f) //Button on monument
+                else if (randomPosition < 11f) //Button on monument
                 {
                     buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
                 }
@@ -523,9 +523,9 @@ public class FinalLevelRayPerceptionAgent : Agent
                 }
 
                 //Randomize button position
-                float randomPosition = Random.Range(0f, 6f);
+                float randomPosition = Random.Range(0f, 12f);
 
-                if (randomPosition < 3f)
+                if (randomPosition < 9f)
                 {
                     buttonOnJumpSection = true;
 
@@ -550,12 +550,12 @@ public class FinalLevelRayPerceptionAgent : Agent
                     //Button new position
                     buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
                 }
-                else if (randomPosition < 4f)
+                else if (randomPosition < 10f)
                 {
                     //Button
                     buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(1f, 48f));
                 }
-                else if (randomPosition < 5f) //Button on monument
+                else if (randomPosition < 11f) //Button on monument
                 {
                     buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
                 }
