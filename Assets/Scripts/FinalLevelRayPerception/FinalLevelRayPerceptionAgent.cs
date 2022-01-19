@@ -734,9 +734,9 @@ public class FinalLevelRayPerceptionAgent : Agent
             }
 
             //Randomize button position
-            float randomPosition = Random.Range(0f, 4f);
+            float randomPosition = Random.Range(0f, 5f);
 
-            if (randomPosition < 1f)
+            if (randomPosition < 2f)
             {
                 buttonOnJumpSection = true;
 
@@ -753,12 +753,12 @@ public class FinalLevelRayPerceptionAgent : Agent
                 //Button new position
                 buttonTransform.localPosition = new Vector3(Random.Range(platformX - platformScaleX / 2 + 0.5f, platformX + platformScaleX / 2 - 0.5f), 5.83f, Random.Range(platformZ - platformScaleZ / 2 + 0.5f, platformZ + platformScaleZ / 2 - 0.5f));
             }
-            else if (randomPosition < 2f)
+            else if (randomPosition < 3f)
             {
                 //Button
                 buttonTransform.localPosition = new Vector3(Random.Range(-8.4f, 9f), 1.25f, Random.Range(-48f, 48f));
             }
-            else if (randomPosition < 3f) //Button on monument
+            else if (randomPosition < 4f) //Button on monument
             {
                 buttonTransform.localPosition = possiblePositionsMonument[Mathf.RoundToInt(Random.Range(0f, possiblePositionsMonument.Length - 1))];
             }
@@ -905,7 +905,7 @@ public class FinalLevelRayPerceptionAgent : Agent
 
         if (other.CompareTag("Target"))
         {
-            floorMeshRenderer.material = winMaterial;
+            //floorMeshRenderer.material = winMaterial;
             Debug.Log("Target found!");
             AddReward(3f);
             EndEpisode();
@@ -913,7 +913,7 @@ public class FinalLevelRayPerceptionAgent : Agent
         else if (other.CompareTag("Wall"))
         {
             Debug.Log("Wall hitted!");
-            floorMeshRenderer.material = loseMaterial;
+            //floorMeshRenderer.material = loseMaterial;
             AddReward(-3f);
             movementScript.SetLiftStatus(false);
             EndEpisode();
