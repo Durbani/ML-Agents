@@ -1,0 +1,229 @@
+behaviors:
+  AgentBehavior:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 512 #128
+      buffer_size: 4096 #2048
+      learning_rate: 3.0e-4
+      beta: 5.0e-3
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: false
+      hidden_units: 256
+      num_layers: 2
+      #vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+      curiosity:
+        strength: 0.02
+        gamma: 0.99
+        encoding_size: 256
+        learning_rate: 3.0e-4
+      #gail:
+        #strength: 0.1
+        #demo_path: Demos/RayPercBigLevel.demo
+    keep_checkpoints: 5
+    max_steps: 50000000
+    time_horizon: 128
+    summary_freq: 20000
+    threaded: true
+environment_parameters:
+  level_data:
+    curriculum:
+      - name: Lesson0
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 0.0
+            max_value: 0.9
+      - name: Lesson1
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 1.0
+            max_value: 1.9
+      - name: Lesson2
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 2.0
+            max_value: 2.9
+      - name: Lesson3
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 3.0
+            max_value: 3.9
+      - name: Lesson4
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 4.0
+            max_value: 4.9
+      - name: Lesson5
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 5.0
+            max_value: 5.9
+      - name: Lesson6
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 6.0
+            max_value: 6.9
+      - name: Lesson7
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 7.0
+            max_value: 7.9
+      - name: Lesson8
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 200
+          threshold: 2.8
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 8.0
+            max_value: 8.9
+      - name: Lesson9
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 200
+          threshold: 2.4
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 9.0
+            max_value: 9.9
+      - name: Lesson10
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 200
+          threshold: 2.4
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 10.0
+            max_value: 10.9
+      - name: Lesson11
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 200
+          threshold: 2.4
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 11.0
+            max_value: 11.9
+      - name: Lesson12
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 200
+          threshold: 2.4
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 12.0
+            max_value: 12.9
+      - name: Lesson13
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 200
+          threshold: 2.4
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 13.0
+            max_value: 13.9
+      - name: Lesson14
+        completion_criteria:
+          measure: reward
+          behavior: AgentBehavior
+          signal_smoothing: true
+          min_lesson_length: 200
+          threshold: 2.0
+        value:
+          sampler_type: uniform
+          sampler_parameters:
+            min_value: 14.0
+            max_value: 14.9
+      # - name: Lesson15
+        # completion_criteria:
+          # measure: reward
+          # behavior: AgentBehavior
+          # signal_smoothing: true
+          # min_lesson_length: 100
+          # threshold: 2.0
+        # value:
+          # sampler_type: uniform
+          # sampler_parameters:
+            # min_value: 15.0
+            # max_value: 15.9

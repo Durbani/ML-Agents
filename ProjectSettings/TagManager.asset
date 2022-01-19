@@ -10,6 +10,10 @@ TagManager:
   - Platform
   - Collectible
   - InsideWall
+  - BoxWall
+  - Movable
+  - PointArea
+  - BlockTrigger
   layers:
   - Default
   - TransparentFX
